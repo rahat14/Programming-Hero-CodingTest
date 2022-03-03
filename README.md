@@ -1,9 +1,9 @@
 # CodingTest
- A Test App Featuring MVVM,Hilt,Navigation Component,Retrofit
+ A QUIZ App Featuring MVVM,Hilt,Navigation Component,Retrofit
 #Project Summary
-This application loads the last 10 commits from the github's official flutter repo.And also shows a summary of a specific user details. 
+This application loads some quiz question from remote server and provide UI for quiz and calculate score also keep track of the HighScore. 
 # Tech stack & Open-source libraries
-- 100% [Kotlin](https://kotlinlang.org/) based, [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous.
+- 100% [Kotlin](https://kotlinlang.org/) based, [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Live Data](https://developer.android.com/topic/libraries/architecture/livedata) for asynchronous.
 - JetPack🚀
   - ViewBinding - View binding is a feature that allows you to more easily write code that interacts with views.
   - LiveData With Flow - notify domain layer data to views.
@@ -21,4 +21,4 @@ This application loads the last 10 commits from the github's official flutter re
 - Repository pattern
 
 # Project Demo 
-<img src="https://media.giphy.com/media/rfU3d5ZDsXAWvkWQSd/giphy.gif" width="222" height="480" />
+<img src="https://media.giphy.com/media/DRXvld6l1eqc9qFreu/giphy.gif" width="222" height="480" />
