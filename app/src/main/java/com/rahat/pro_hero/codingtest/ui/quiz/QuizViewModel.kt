@@ -6,11 +6,11 @@ import android.widget.TextView
 import androidx.lifecycle.*
 import com.rahat.pro_hero.codingtest.local.ScoreDao
 import com.rahat.pro_hero.codingtest.models.*
+import com.rahat.pro_hero.codingtest.utils.Const
 import com.rahat.pro_hero.codingtest.utils.Utils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @SuppressLint("SetTextI18n")
@@ -27,8 +27,6 @@ class QuizViewModel @Inject constructor(
     val currentTime = MutableLiveData<Long>()
     private lateinit var timer: CountDownTimer
     var qusResponse: MutableLiveData<Pair<QusResponse?, ErrorResponse?>> = MutableLiveData()
-    var nextQuestionTimer = TimeUnit.SECONDS.toMillis(2)
-    var OnGoingQuestionTimer = TimeUnit.SECONDS.toMillis(10)
     var triggerNextQuestion = MutableLiveData<Boolean>(false)
 
 
@@ -126,7 +124,7 @@ class QuizViewModel @Inject constructor(
         if (timer != null) {
             timer.cancel()
         }
-        timer = object : CountDownTimer(nextQuestionTimer, 1000L) {
+        timer = object : CountDownTimer(Const.NEXT_QUESTION_INTERVAL, 1000L) {
             override fun onTick(p0: Long) {
                 currentTime.value = p0 / 1000L
             }
@@ -141,7 +139,7 @@ class QuizViewModel @Inject constructor(
 
     fun createAndStartTimerForOngoingQuestion() {
 
-        timer = object : CountDownTimer(OnGoingQuestionTimer, 1000L) {
+        timer = object : CountDownTimer(Const.ONGOING_QUESTION_TIME_LIMIT, 1000L) {
             override fun onTick(p0: Long) {
                 currentTime.value = p0 / 1000L
             }

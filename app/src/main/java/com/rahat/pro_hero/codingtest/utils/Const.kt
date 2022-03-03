@@ -1,11 +1,12 @@
 package com.rahat.pro_hero.codingtest.utils
 
+import java.util.concurrent.TimeUnit
+
 class Const {
     companion object {
         const val BASE_URL: String = "https://herosapp.nyc3.digitaloceanspaces.com/"
-        const val PER_PAGE: Int = 10
-        const val REPO_NAME: String = "FLUTTER"
-        const val REPO_OWNER: String = "FLUTTER"
-        const val PROFILE_USERNAME: String = "mitchtabian"
+        const val ONGOING_QUESTION_TIME_LIMIT: Long = 10 * 1000L
+        const val NEXT_QUESTION_INTERVAL: Long =  2 * 1000L
+
     }
 }

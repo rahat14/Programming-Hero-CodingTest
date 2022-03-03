@@ -17,6 +17,7 @@ import com.rahat.pro_hero.codingtest.R
 import com.rahat.pro_hero.codingtest.adapters.AnswerAdapter
 import com.rahat.pro_hero.codingtest.databinding.FragmentQuizBinding
 import com.rahat.pro_hero.codingtest.models.AnswerModel
+import com.rahat.pro_hero.codingtest.utils.Const
 import com.rahat.pro_hero.codingtest.utils.fadeTo
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -96,13 +97,12 @@ class QuizFragment : Fragment(R.layout.fragment_quiz), AnswerAdapter.Interaction
             if (modifiedAnserList != null) {
 
                 mAdapter = AnswerAdapter(this, modifiedAnserList)
-                // as there will be only max 4 to 5  items so i will just call notify data set changed
                 // so performance of the list would be a issue for now
                 setAdapter(mAdapter)
 
             }
             //setup timer
-            setupTimerView(10f)
+            setupTimerView(Const.ONGOING_QUESTION_TIME_LIMIT.toFloat())
             //starting the timer for quiz
             viewModel.createAndStartTimerForOngoingQuestion()
         }
@@ -132,9 +132,6 @@ class QuizFragment : Fragment(R.layout.fragment_quiz), AnswerAdapter.Interaction
         //starting to observe the data coming from web in live data
         viewModel.qusResponse.observe(viewLifecycleOwner) {
             if (it.first != null) {
-                val list = it.first
-                Log.d("TAG", "callForData: ${list.toString()}")
-                //start the quiz
                 initQuiz()
                 binding.loadingPanel.fadeTo(false)
             } else {
@@ -204,14 +201,15 @@ class QuizFragment : Fragment(R.layout.fragment_quiz), AnswerAdapter.Interaction
 
     private fun triggerNextQuestion() {
         //setting and changing the view
-        setupTimerView(2f)
+        setupTimerView(Const.NEXT_QUESTION_INTERVAL.toFloat())
         //creating the timer
         viewModel.createAndStartTimerForNextQuestion()
     }
 
     private fun setupTimerView(max: Float) {
+
         binding.circularProgressBar.progress = 0f
-        binding.circularProgressBar.progressMax = max
+        binding.circularProgressBar.progressMax = max/1000
     }
 
 
